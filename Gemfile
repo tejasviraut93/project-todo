@@ -64,3 +64,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Devise gem to authenticate users
 gem 'devise', '~> 4.2'
 
+# Bootstrap for styling
+gem 'bootstrap', '~> 4.3', '>= 4.3.1'
+gem 'sprockets-rails', '~> 3.2', '>= 3.2.1'
+gem 'jquery-rails'
+gem 'popper_js', '~> 1.14.5'
+
