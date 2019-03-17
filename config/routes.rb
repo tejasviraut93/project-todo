@@ -15,6 +15,10 @@ Rails.application.routes.draw do
 
   resources :developers
   resources :projects do
+    resources :employees,
+      controller: 'projects/employees',
+      only: %i[new create destroy index show]
+
     resources :todos
   end
 

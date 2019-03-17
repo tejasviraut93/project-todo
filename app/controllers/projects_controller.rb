@@ -13,6 +13,7 @@ class ProjectsController < ApplicationController
   def show
     authorize! :show, Project
     @todos = @project.todos
+    @employees = @project.employee_projects
   end
 
   # GET /projects/new

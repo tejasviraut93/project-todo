@@ -1,0 +1,12 @@
+div.d-flex.justify-content-between.mb-3
+  h5
+    = link_to "#{project.name}", project_path(project)
+
+  div
+    - if current_employee.admin? 
+      = link_to 'Add Employees', new_project_employee_path(project),
+          class: "btn-success btn-sm mr-3"
+      = link_to 'Add Todos', new_project_todo_path(project),
+          class: "btn-primary btn-sm mr-3"
+      = link_to 'Edit', edit_project_path(project), class: 'mr-3'
+    = link_to 'Back', projects_path
