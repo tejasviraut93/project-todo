@@ -76,3 +76,6 @@ gem 'slim'
 
 # For storing enum as string
 gem 'enumerize', '~> 2.2', '>= 2.2.2'
+
+# For authorization
+gem "cancan"
