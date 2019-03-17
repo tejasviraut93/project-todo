@@ -21,7 +21,7 @@ class Employee < ApplicationRecord
             format: {
               with: /\A\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+\z/,
               message: 'is invalid'
-            }
+            }, uniqueness: true
   validates :organization_name,
             presence: true,
             format: {

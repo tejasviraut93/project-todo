@@ -1,0 +1,18 @@
+= form_with(model: project, local: true) do |form|
+  - if project.errors.any?
+    div id="error_explanation" class="bg-danger text-white p-3 mb-3"
+      h2 = "#{pluralize(project.errors.count, "error")} prohibited this project from being saved:"
+      ul
+        - project.errors.full_messages.each do |message|
+          li = message
+
+  
+  div class='field form-group'
+    = form.label :name
+    = form.text_field :name, autocomplete: :off, class: 'form-control'
+  
+  div class="actions"
+    = form.submit 'Save', class: 'btn btn-success mr-2'
+    = link_to 'Back',
+      projects_path,
+      class: 'btn btn-secondary'
