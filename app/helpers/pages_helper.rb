@@ -1,4 +1,4 @@
-module ApplicationHelper
+module PagesHelper
   def flash_class(level)
     case level
     when 'notice'
