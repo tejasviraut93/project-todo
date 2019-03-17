@@ -1,12 +1,9 @@
-div.d-flex.justify-content-between.mb-3
-  h5
-    = @project.name
-
-  div
-    - if current_employee.admin? 
-      = link_to 'New Todos', new_project_todo_path(@project), class: "btn-primary btn-sm mr-3"
-      = link_to 'Edit', edit_project_path(@project), class: 'mr-3'
-    = link_to 'Back', projects_path
+= render 'header', project: @project
 
 div.px-3.border-top
+  h5 TODOS
   = render 'todos/todos', todos: @todos 
+
+div.px-3.border-top
+  h5 DEVELOPERS
+  = render 'projects/employees/employees', employees: @employees 

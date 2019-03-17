@@ -10,6 +10,8 @@ class Employee < ApplicationRecord
   attr_accessor :organization_name, :skip_organization_details
 
   belongs_to :organization, optional: true
+  has_many :employee_projects, dependent: :destroy
+  has_many :projects, through: :employee_projects
 
   validates :name,
             presence: true,

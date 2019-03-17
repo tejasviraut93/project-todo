@@ -1,0 +1,6 @@
+= render 'projects/header', project: @project
+
+div class='border-top'
+  ul class='list-group list-group-flush'
+    - @employees.each do |employee|
+      = render 'employee', employee: employee

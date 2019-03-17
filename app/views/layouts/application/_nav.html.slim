@@ -9,12 +9,16 @@ nav class="navbar navbar-expand-md navbar-light bg-white fixed-top"
     ul class="navbar-nav mr-auto"
       li class="nav-item"
         = link_to 'Dashboard', root_path, class:"nav-link"
-      li class="nav-item"
-        = link_to 'Developers', developers_path, class: 'nav-link'
-      li class="nav-item"
-        = link_to 'Projects', projects_path, class: 'nav-link'      
-      li class="nav-item"
-        = link_to 'Todos', developers_path, class: 'nav-link'      
+
+      - if current_employee.admin? 
+        li class="nav-item"
+          = link_to 'Developers', developers_path, class: 'nav-link'
+        li class="nav-item"
+          = link_to 'Projects', projects_path, class: 'nav-link'  
+
+      - else current_employee.admin?
+        li class="nav-item"
+          = link_to 'Todos', developers_path, class: 'nav-link' 
 
     ul class="navbar-nav ml-md-auto"
       li class="nav-item dropdown"

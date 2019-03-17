@@ -1,0 +1,2 @@
+module Projects::EmployeesHelper
+end
