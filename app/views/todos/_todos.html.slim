@@ -1,0 +1,14 @@
+ul class="list-group list-group-flush"
+  - todos.each do |todo|
+    li class="list-group-item"
+      div.d-flex.justify-content-between
+        div
+          = link_to todo.description, project_todo_path(@project, todo), class: 'mr-3'
+          div.small
+            span.pr-2 STATUS:
+            strong = todo.status.humanize
+        div
+          - if current_employee.admin?
+            = link_to 'Edit', edit_project_todo_path(@project, todo), class: 'mr-3'
+            = link_to 'Destroy', project_todo_path(@project, todo),
+                method: :delete, data: { confirm: 'Are you sure?' }, class: "text-danger"

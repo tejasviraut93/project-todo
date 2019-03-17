@@ -1,5 +1,4 @@
 class ProjectsController < ApplicationController
-  before_action :authenticate_employee!
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   # GET /projects
@@ -13,6 +12,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     authorize! :show, Project
+    @todos = @project.todos
   end
 
   # GET /projects/new

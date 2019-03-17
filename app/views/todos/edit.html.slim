@@ -1,0 +1,6 @@
+.d-flex.justify-content-between
+  h5 Editing Todo
+  = link_to 'Show', project_todo_path(@project, @todo)
+
+= render 'form', todo: @todo
+
