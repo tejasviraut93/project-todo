@@ -7,7 +7,7 @@ class Employee < ApplicationRecord
 
   enumerize :role, in: %i[admin developer], default: :developer
 
-  attr_accessor :organization_name
+  attr_accessor :organization_name, :skip_organization_details
 
   belongs_to :organization, optional: true
 
@@ -27,13 +27,22 @@ class Employee < ApplicationRecord
             format: {
               with: /\A[^`!@#\$%\^&*+_=]+\z/,
               message: 'is invalid'
-            }, on: :create
+            }, on: :create, unless: :skip_organization_details
 
   before_create :create_organization
+
+  scope :developers, -> { where(role: 'developer') }
+  scope :admin, -> { where(role: 'admin') }
+
+  def admin?
+    role == 'admin'
+  end
+
+  private
 
   def create_organization
     self.organization = Organization.create(
       name: organization_name
-    )
+    ) unless self.organization
   end
 end
