@@ -1,0 +1,25 @@
+= form_with(model: [@project, todo], local: true) do |form|
+  - if todo.errors.any?
+    div id="error_explanation" class="bg-danger text-white p-3 mb-3"
+      h2 = "#{pluralize(todo.errors.count, "error")} prohibited this todo from being saved:"
+      ul
+        - todo.errors.full_messages.each do |message|
+          li = message
+
+  
+  div class='field form-group'
+    = form.label :description
+    = form.text_area :description, autocomplete: :off, class: 'form-control'
+
+  div class='field form-group'
+    = form.label :status
+    = form.select :status,
+            options_for_select(Todo.status.values.collect { |status| [status.humanize, status]}, params[:status] || form.object.status),
+            {},
+            { class: 'form-control' }
+
+  div class="actions"
+    = form.submit 'Save', class: 'btn btn-success mr-2'
+    = link_to 'Back',
+      project_path(@project),
+      class: 'btn btn-secondary'

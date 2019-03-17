@@ -1,0 +1,7 @@
+.d-flex.justify-content-between.mb-3
+  h5 Todos
+  - if current_employee.admin?
+    = link_to 'New Todos', new_project_todo_path, class: "btn-primary btn-sm"
+
+= render 'todos', todos: @todos
+
