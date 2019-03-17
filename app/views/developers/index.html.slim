@@ -11,5 +11,7 @@ ul class="list-group list-group-flush"
 
         div
           - if current_employee.admin?
-            = link_to 'Destroy', developer_path(developer), method: :delete, data: { confirm: 'Are you sure?' }
+            = link_to 'Destroy', developer_path(developer),
+                method: :delete, data: { confirm: 'Are you sure?' },
+                class: 'text-danger'
 
