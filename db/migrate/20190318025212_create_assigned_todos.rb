@@ -6,6 +6,6 @@ class CreateAssignedTodos < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
-    add_index :employee_projects_todos, %i[employee_project_id todo_id], unique: true
+    add_index :assigned_todos, %i[employee_project_id todo_id], unique: true
   end
 end
