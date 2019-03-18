@@ -10,20 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_18_025212) do
+ActiveRecord::Schema.define(version: 2019_03_17_145236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "assigned_todos", force: :cascade do |t|
-    t.bigint "employee_project_id"
-    t.bigint "todo_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["employee_project_id", "todo_id"], name: "index_assigned_todos_on_employee_project_id_and_todo_id", unique: true
-    t.index ["employee_project_id"], name: "index_assigned_todos_on_employee_project_id"
-    t.index ["todo_id"], name: "index_assigned_todos_on_todo_id"
-  end
 
   create_table "employee_projects", force: :cascade do |t|
     t.bigint "project_id"
@@ -74,8 +64,6 @@ ActiveRecord::Schema.define(version: 2019_03_18_025212) do
     t.index ["project_id"], name: "index_todos_on_project_id"
   end
 
-  add_foreign_key "assigned_todos", "employee_projects"
-  add_foreign_key "assigned_todos", "todos"
   add_foreign_key "employee_projects", "employees"
   add_foreign_key "employee_projects", "projects"
   add_foreign_key "employees", "organizations"

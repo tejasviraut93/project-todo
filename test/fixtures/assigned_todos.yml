@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  employee_project: one
-  todo: one
-
-two:
-  employee_project: two
-  todo: two
