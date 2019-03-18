@@ -1,8 +1,7 @@
 class Todo < ApplicationRecord
   extend Enumerize
   belongs_to :project
-  has_many :assigned_todos, dependent: :destroy
-  has_many :employees, through: :assigned_todos
+  belongs_to :employee_project, optional: true
 
   enumerize :status, in: %i[new in_progress done], default: :new
   validates :description,

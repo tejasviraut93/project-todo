@@ -1,0 +1,9 @@
+div.small.pr-2
+  span.pr-2 STATUS:
+  strong.pr-2 = todo.status.humanize
+  span.pr-2 ASSIGNED TO:
+  - if todo.employee_project
+    strong.text-primary = todo.employee_project.name
+  - else
+    strong.text-danger Not Assigned
+          

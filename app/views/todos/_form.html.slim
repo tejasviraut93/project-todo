@@ -18,6 +18,13 @@
             {},
             { class: 'form-control' }
 
+  div class='field form-group'
+    = form.label :developer
+    = form.collection_select(:employee_project_id,
+            @employee_projects, :id, :name,
+            {prompt: 'Select a developer'},
+            { class: 'form-control' })
+
   div class="actions"
     = form.submit 'Save', class: 'btn btn-success mr-2'
     = link_to 'Back',

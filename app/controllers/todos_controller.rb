@@ -19,11 +19,13 @@ class TodosController < ApplicationController
   def new
     authorize! :new, Todo
     @todo = @project.todos.new
+    @employee_projects = @project.employee_projects
   end
 
   # GET /todos/1/edit
   def edit
     authorize! :edit, Todo
+    @employee_projects = @project.employee_projects
   end
 
   # POST /todos
@@ -37,6 +39,7 @@ class TodosController < ApplicationController
         format.html { redirect_to project_todo_url(@project, @todo), notice: 'Todo was successfully created.' }
         format.json { render :show, status: :created, location: @todo }
       else
+        @employee_projects = @project.employee_projects
         format.html { render :new }
         format.json { render json: @todo.errors, status: :unprocessable_entity }
       end
@@ -52,6 +55,7 @@ class TodosController < ApplicationController
         format.html { redirect_to project_todo_url(@project, @todo), notice: 'Todo was successfully updated.' }
         format.json { render :show, status: :ok, location: @todo }
       else
+        @employee_projects = @project.employee_projects
         format.html { render :edit }
         format.json { render json: @todo.errors, status: :unprocessable_entity }
       end
@@ -82,6 +86,6 @@ class TodosController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def todo_params
-    params.require(:todo).permit(:description, :status)
+    params.require(:todo).permit(:description, :status, :employee_project_id)
   end
 end
