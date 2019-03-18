@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_17_145236) do
+ActiveRecord::Schema.define(version: 2019_03_18_032732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(version: 2019_03_17_145236) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "employee_project_id"
+    t.index ["employee_project_id"], name: "index_todos_on_employee_project_id"
     t.index ["project_id"], name: "index_todos_on_project_id"
   end
 
@@ -68,5 +70,6 @@ ActiveRecord::Schema.define(version: 2019_03_17_145236) do
   add_foreign_key "employee_projects", "projects"
   add_foreign_key "employees", "organizations"
   add_foreign_key "projects", "organizations"
+  add_foreign_key "todos", "employee_projects"
   add_foreign_key "todos", "projects"
 end

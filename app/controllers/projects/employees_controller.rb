@@ -28,6 +28,9 @@ class Projects::EmployeesController < ApplicationController
         format.html { redirect_to new_project_employee_path(@project), notice: 'Project was successfully assigned to employee.' }
         format.json { render :show, status: :created, location: @employee_project }
       else
+        @project_employees = @project.employees
+        @employees = @organization.employees.developers
+          .where.not(id: @project_employees).order(:name)
         format.html { render :new }
         format.json { render json: @employee_project.errors, status: :unprocessable_entity }
       end

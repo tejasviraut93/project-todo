@@ -12,6 +12,7 @@ class Employee < ApplicationRecord
   belongs_to :organization, optional: true
   has_many :employee_projects, dependent: :destroy
   has_many :projects, through: :employee_projects
+  has_many :todos, through: :employee_projects
 
   validates :name,
             presence: true,
