@@ -1,0 +1,11 @@
+.card.p-3.my-3
+  h5 New Todos
+  = render 'todos', todos: @new, message: 'There are no new Todos'
+
+.card.p-3.my-3
+  h5 In Progress Todos
+  = render 'todos', todos: @in_progress, message: 'There are no Todos in progress'
+
+.card.p-3.my-3
+  h5 Done Todos
+  = render 'todos', todos: @done, message: 'No Todos are done'

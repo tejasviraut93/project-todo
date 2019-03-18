@@ -6,13 +6,20 @@ class DevelopersController < ApplicationController
   # GET /developers.json
   def index
     authorize! :index, Employee
-    @developers = @organization.employees.developers
+    if current_employee.admin?
+      @developers = @organization.employees.developers
+    else
+      raise CanCan::AccessDenied.new("Not authorized!", :read, Employee)
+    end
   end
 
   # GET /developers/1
   # GET /developers/1.json
   def show
     authorize! :show, Employee
+    unless current_employee.admin?
+      raise CanCan::AccessDenied.new("Not authorized!", :read, Employee)
+    end
   end
 
   # GET /developers/new

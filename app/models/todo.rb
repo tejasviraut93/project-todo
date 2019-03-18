@@ -9,5 +9,5 @@ class Todo < ApplicationRecord
 
   scope :new_todos, -> { where(status: 'new') }
   scope :in_progress, -> { where(status: 'in_progress') }
-  scope :done, -> { where(role: 'done') }
+  scope :done, -> { where(status: 'done') }
 end
