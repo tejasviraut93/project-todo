@@ -6,13 +6,20 @@ class TodosController < ApplicationController
   # GET /todos.json
   def index
     authorize! :index, Todo
-    @todos = @project.todos
+    if current_employee.admin?
+      @todos = @project.todos
+    else
+      raise CanCan::AccessDenied.new("Not authorized!", :read, Todo)
+    end
   end
 
   # GET /todos/1
   # GET /todos/1.json
   def show
     authorize! :show, Todo
+    unless current_employee.admin?
+      raise CanCan::AccessDenied.new("Not authorized!", :read, Todo)
+    end
   end
 
   # GET /todos/new

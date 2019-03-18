@@ -1,19 +1,28 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_employee!
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   # GET /projects
   # GET /projects.json
   def index
     authorize! :index, Project
-    @projects = @organization.projects
+    if current_employee.admin?
+      @projects = @organization.projects
+    else
+      raise CanCan::AccessDenied.new("Not authorized!", :read, Project)
+    end
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
     authorize! :show, Project
-    @todos = @project.todos
-    @employees = @project.employee_projects
+    if current_employee.admin?
+      @todos = @project.todos
+      @employees = @project.employee_projects
+    else
+      raise CanCan::AccessDenied.new("Not authorized!", :read, Project)
+    end
   end
 
   # GET /projects/new

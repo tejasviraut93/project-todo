@@ -3,12 +3,20 @@ class Projects::EmployeesController < ApplicationController
 
   def index
     authorize! :index, (@project || @employee)
-    @employees = @project.employee_projects
+    if current_employee.admin? 
+      @employees = @project.employee_projects
+    else
+      raise CanCan::AccessDenied.new("Not authorized!", :read, Project)
+    end
   end
 
   def show
     authorize! :show, (@project || @employee)
-    @employee_project = @project.employee_projects.find(:id)
+    if current_employee.admin?
+      @employee_project = @project.employee_projects.find(:id)
+    else
+      raise CanCan::AccessDenied.new("Not authorized!", :read, Project)
+    end
   end
 
   def new

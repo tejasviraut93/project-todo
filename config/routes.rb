@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  namespace :employees do
+    resources :todos,
+      only: %i[index edit update]
+  end
+
   devise_for :employees, controllers: {
     sessions: 'employees/sessions',
     registrations: 'employees/registrations',
