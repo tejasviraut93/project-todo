@@ -1,1 +1,6 @@
-h5 Dashboard#index
+h5 Dashboard
+
+- if current_employee.admin?
+  = render 'tables', models: @developers
+
+  = render 'tables', models: @projects
