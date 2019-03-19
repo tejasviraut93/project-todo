@@ -7,14 +7,7 @@ class DashboardController < ApplicationController
     if current_employee.admin?
       @developers = @organization.employees.includes(:todos).developers.order(:name)
 
-      @projects = @organization.projects.includes(:todos).order('todos.status')
-
-      # @abc = ActiveRecord::Base.connection.execute(<<-SQL
-      #   SELECT status
-      #   FROM todos
-      #   GROUP BY status
-      # SQL
-      # )
+      @projects = @organization.projects.includes(:todos).order(:name)
     end
   end
 end
