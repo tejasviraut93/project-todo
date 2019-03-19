@@ -10,32 +10,36 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "todos" ]
-
   connect() {
+    google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(this.drawChart);
   }
 
   drawChart() {
     // Create the data table.
-    var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Topping');
-    data.addColumn('number', 'Slices');
-    data.addRows([
-      ['Mushrooms', 3],
-      ['Onions', 1],
-      ['Olives', 1],
-      ['Zucchini', 1],
-      ['Pepperoni', 2]
-    ]);
+    const projects = $(".project");
+    projects.each(function () {
+      const new_count = $(this).data('newtodos');
+      const inprog_count = $(this).data('inprog');
+      const done_count = $(this).data('done');
+      const name = $(this).data('name');
 
-    // Set chart options
-    var options = {'title':'Project: ',
-                    'width':400,
-                    'height':300};
-
-    // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.PieChart(document.getElementById('pie_div'));
-    chart.draw(data, options);
+      let data = new google.visualization.DataTable();
+      data.addColumn('string', 'Status');
+      data.addColumn('number', 'Todos');
+      data.addRows([
+        ['New', parseInt(new_count)],
+        ['In Progress', parseInt(inprog_count)],
+        ['Done', parseInt(done_count)],
+      ]);
+      
+      // Set chart options
+      let options = {'title': name,
+                      'width':400,
+                      'height':300};
+      // Instantiate and draw our chart, passing in some options.
+      let chart = new google.visualization.PieChart(document.getElementById(name));
+      chart.draw(data, options);
+    });
   }
 }
