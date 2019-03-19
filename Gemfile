@@ -70,6 +70,8 @@ gem 'sprockets-rails', '~> 3.2', '>= 3.2.1'
 gem 'jquery-rails'
 gem 'popper_js', '~> 1.14.5'
 
+# Webpacker for stimulus
+gem 'webpacker', '~> 4.x'
 
 # For html template
 gem 'slim'
