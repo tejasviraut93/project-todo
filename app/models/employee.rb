@@ -41,6 +41,10 @@ class Employee < ApplicationRecord
     role == 'admin'
   end
 
+  def ordered_todos
+    todos.order(status)
+  end
+
   private
 
   def create_organization

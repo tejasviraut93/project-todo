@@ -12,9 +12,9 @@ nav class="navbar navbar-expand-md navbar-light bg-white fixed-top"
 
       - if current_employee.admin? 
         li class="nav-item"
-          = link_to 'Developers', developers_path, class: 'nav-link'
-        li class="nav-item"
           = link_to 'Projects', projects_path, class: 'nav-link'  
+        li class="nav-item"
+          = link_to 'Developers', developers_path, class: 'nav-link'
 
       - else current_employee.admin?
         li class="nav-item"

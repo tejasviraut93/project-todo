@@ -1,0 +1,7 @@
+.row.border-bottom
+  .col
+    strong New
+  - models.each do |model|
+    .col
+      - model.todos.new_todos.each do |todo|
+        div = todo.description
