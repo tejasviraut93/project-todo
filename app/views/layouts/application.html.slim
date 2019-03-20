@@ -1,0 +1,27 @@
+doctype html
+html
+  head
+    title ProjectTodos
+
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    = csrf_meta_tags
+  
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' 
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    /  <!--Load the AJAX API-->
+    script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"
+    = javascript_pack_tag 'application'
+    = stylesheet_pack_tag 'application'
+
+  body
+    = render 'layouts/application/nav'
+
+    main role='main' class='container-fluid'
+      div.my-5.py-2
+        - flash.each do |name, msg|
+          div class="#{flash_class(name)}" data-controller='flash'
+            = msg
+
+        div class='card p-3 my-3'
+          = yield

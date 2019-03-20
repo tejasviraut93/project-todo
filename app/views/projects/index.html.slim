@@ -1,0 +1,18 @@
+.d-flex.justify-content-between.mb-3
+  h5 Projects
+  - if current_employee.admin?
+    = link_to 'New Project', new_project_path, class: "btn-primary btn-sm"
+
+ul class="list-group list-group-flush"
+  - @projects.each do |project|
+    li class="list-group-item"
+      div.d-flex.justify-content-between
+        div
+          = link_to "#{project.name}", project_path(project)
+
+        div
+          - if current_employee.admin?
+            = link_to 'Edit', edit_project_path(project), class: 'mr-3'
+            = link_to 'Destroy', project_path(project),
+                method: :delete, data: { confirm: 'Are you sure?' },
+                class: 'text-danger'

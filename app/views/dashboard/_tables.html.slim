@@ -1,0 +1,14 @@
+div.py-3
+  div.mb-3
+    strong ="--- #{models.first.class} View ---"
+
+  .row.border-bottom
+    .col
+      strong Status
+    - models.each do |model|
+      .col
+        strong = model.name
+  
+  - Todo.status.values.each do |status|
+    = render status, models: models
+

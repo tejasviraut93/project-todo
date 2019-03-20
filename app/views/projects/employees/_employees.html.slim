@@ -1,0 +1,13 @@
+div class='border-top'
+  ul class='list-group list-group-flush'
+    - employees.each do |employee|
+      li class="list-group-item"
+        div.d-flex.justify-content-between
+          div
+            ="#{employee.employee.name}"
+
+          div
+            - if current_employee.admin?
+              = link_to 'Destroy', project_employee_path(@project, employee),
+                  method: :delete, data: { confirm: 'Are you sure?' },
+                  class: 'text-danger'

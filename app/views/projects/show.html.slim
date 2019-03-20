@@ -1,0 +1,19 @@
+= render 'header', project: @project
+
+div.row.border-top
+  div.col-md-6.p-3
+    div.d-flex.justify-content-between.mb-3
+      h5 DEVELOPERS
+      - if current_employee.admin? 
+        = link_to 'Add Developers', new_project_employee_path(@project),
+            class: "btn-success btn-sm mr-3"
+    = render 'projects/employees/employees', employees: @employees 
+
+  div.col-md-6.p-3
+    div.d-flex.justify-content-between.mb-3
+      h5 TODOS
+      - if current_employee.admin?
+        = link_to 'Add Todos', new_project_todo_path(@project),
+            class: "btn-primary btn-sm mr-3"
+    = render 'todos/todos', todos: @todos 
+

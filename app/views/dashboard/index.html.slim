@@ -1,0 +1,10 @@
+h5 Dashboard
+
+- if current_employee.admin?
+  = render 'tables', models: @developers
+
+  = render 'tables', models: @projects
+
+  div data-controller='todos-pie'
+    = @projects.each do |project|
+      div.project id=project.name data-name=project.name data-newtodos=project.todos.new_todos.size data-inprog=project.todos.in_progress.size data-done=project.todos.done.size

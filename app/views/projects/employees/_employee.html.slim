@@ -1,0 +1,8 @@
+li id="#{dom_id(employee)}" class="list-group-item border-left-0 border-right-0"
+  = form_with(model: @project.employee_projects.new, url: project_employees_path(@project), method: :post) do |form|
+    div class="d-flex justify-content-between field form-group mb-0"
+      div
+        = form.hidden_field :employee_id, value: employee.id
+        = employee.name
+      div class="actions"
+        = form.submit 'Add', class: 'btn btn-link text-success ml-2'

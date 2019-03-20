@@ -1,0 +1,17 @@
+.d-flex.justify-content-between.mb-3
+  h5 Developers
+  - if current_employee.admin?
+    = link_to 'New Developer', new_developer_path, class: "btn-primary btn-sm"
+
+ul class="list-group list-group-flush"
+  - @developers.each do |developer|
+    li class="list-group-item"
+      div.d-flex.justify-content-between
+        = link_to "#{developer.name}", developer_path(developer)
+
+        div
+          - if current_employee.admin?
+            = link_to 'Destroy', developer_path(developer),
+                method: :delete, data: { confirm: 'Are you sure?' },
+                class: 'text-danger'
+

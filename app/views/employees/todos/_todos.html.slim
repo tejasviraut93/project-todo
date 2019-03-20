@@ -1,0 +1,18 @@
+- if todos.any?
+  ul class="list-group list-group-flush"
+    - todos.each_with_index do |todo, index|
+      li class="list-group-item"
+        div.d-flex.justify-content-between
+          div
+            div
+              span.mr-3 = "##{index + 1}."
+              span
+                = todo.description
+                div.small.text-primary
+                  span.mr-3 Project: 
+                  strong = todo.project.name
+          div
+            = link_to 'Edit Status', edit_employees_todo_path(todo), class: 'btn-sm btn-primary'
+
+- else
+  div.border-top.bg-light.p-1.small.m-1 = message

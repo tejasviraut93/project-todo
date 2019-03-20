@@ -1,0 +1,8 @@
+div.d-flex.justify-content-between
+  div
+    = @todo.description
+    = render 'todos/todo_description', todo: @todo
+  div
+    - if current_employee.admin?
+      = link_to 'Edit', edit_project_todo_path(@project, @todo), class: 'mr-3'
+      = link_to 'Back', project_path(@project)

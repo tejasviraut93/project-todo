@@ -60,3 +60,24 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Devise gem to authenticate users
+gem 'devise', '~> 4.2'
+
+# Bootstrap for styling
+gem 'bootstrap', '~> 4.3', '>= 4.3.1'
+gem 'sprockets-rails', '~> 3.2', '>= 3.2.1'
+gem 'jquery-rails'
+gem 'popper_js', '~> 1.14.5'
+
+# Webpacker for stimulus
+gem 'webpacker', '~> 4.x'
+
+# For html template
+gem 'slim'
+
+# For storing enum as string
+gem 'enumerize', '~> 2.2', '>= 2.2.2'
+
+# For authorization
+gem "cancan"

@@ -1,0 +1,10 @@
+div.d-flex.justify-content-between.mb-3
+  h5
+    = link_to "#{project.name}", project_path(project)
+
+  div
+    - if current_employee.admin? 
+      = link_to 'Edit', edit_project_path(project), class: 'btn-secondary btn-sm mr-3'
+      = link_to 'Destroy', project_path(project),
+          method: :delete, data: { confirm: 'Are you sure?' },
+          class: 'btn-danger btn-sm mr-3'

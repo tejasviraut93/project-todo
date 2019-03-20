@@ -1,0 +1,30 @@
+nav class="navbar navbar-expand-md navbar-light bg-white fixed-top"
+  a class="navbar-brand mb-0 h1" href="/"
+    span ProjectTodos
+
+  button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"
+    span class="navbar-toggler-icon"
+  
+  div class="collapse navbar-collapse" id="navbarCollapse"
+    ul class="navbar-nav mr-auto"
+      li class="nav-item"
+        = link_to 'Dashboard', root_path, class:"nav-link"
+
+      - if current_employee.admin? 
+        li class="nav-item"
+          = link_to 'Projects', projects_path, class: 'nav-link'  
+        li class="nav-item"
+          = link_to 'Developers', developers_path, class: 'nav-link'
+
+      - else current_employee.admin?
+        li class="nav-item"
+          = link_to 'Todos', employees_todos_path, class: 'nav-link' 
+
+    ul class="navbar-nav ml-md-auto"
+      li class="nav-item dropdown"
+        a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+          i class='fas fa-lg user-circle'
+          span.ml-1 = current_employee.name
+    
+        div class="dropdown-menu dropdown-menu-right"
+          = link_to 'Signout', destroy_employee_session_path, method: :delete, class: "dropdown-item"
